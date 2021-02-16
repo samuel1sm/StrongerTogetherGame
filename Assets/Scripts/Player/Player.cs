@@ -8,7 +8,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float horizontalSpeed;
     [SerializeField] private float jumpSpeed;
-    
+    [SerializeField] private float extraHeightValue;
+    [SerializeField] private int maxJumpQtd;
+    [SerializeField] private LayerMask plataformLayerMask;
+
+    [SerializeField] private int _jumpQtd;
+    private Collider2D _playerMainCollider;
     private PlayerInput _playerInput;
     private Rigidbody2D _rigidbody2D;
 
@@ -16,7 +21,7 @@ public class Player : MonoBehaviour
     public bool hasRight;
     public bool hasJump;
     public bool hasDown;
-    
+
 
     public event Action<bool, bool, bool> OnMovimentChanged = delegate { };
     public event Action<bool, bool, bool, bool> OnAbilitiesChanged = delegate { };
@@ -26,15 +31,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        _jumpQtd = maxJumpQtd;
         _lastMovement = Vector2.zero;
         _playerInput = new PlayerInput();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _playerMainCollider = GetComponent<Collider2D>();
     }
 
     private void Start()
     {
         _playerInput.terrain.jump.started += _ => Jump();
-
     }
 
     private void OnEnable()
@@ -53,12 +59,12 @@ public class Player : MonoBehaviour
 
         if (!hasLeft && xMovement < 0)
             xMovement = 0;
-            
-        else if(!hasRight && xMovement > 0)
+
+        else if (!hasRight && xMovement > 0)
         {
             xMovement = 0;
         }
-        
+
         Vector2 movement = new Vector2(xMovement, 0);
 
         bool atualDirection = xMovement > 0;
@@ -79,16 +85,17 @@ public class Player : MonoBehaviour
 
 
         _lastMovement = movement;
+        movement *= Time.deltaTime * horizontalSpeed;
+        movement.y = _rigidbody2D.velocity.y;
 
-        Vector3 vel = movement;
-        transform.position = transform.position + vel * (Time.deltaTime * horizontalSpeed);
-        //
-        // var positionOffset = (Physics2D.gravity * _rigidbody2D.gravityScale) + (movement * horizontalSpeed);
-        // _rigidbody2D.MovePosition(_rigidbody2D.position + positionOffset * Time.fixedDeltaTime);
-
-
+        _rigidbody2D.velocity = movement;
+        
+        if(_jumpQtd != maxJumpQtd && movement.y <0)
+            IsGrounded();
+        
     }
 
+    
 
     public void ChangeHasLeft(bool activate)
     {
@@ -116,18 +123,51 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (hasJump)
+        if (hasJump && _jumpQtd > 0)
         {
             Vector2 vel = _rigidbody2D.velocity;
             vel.y = 0;
             _rigidbody2D.velocity = vel;
             _rigidbody2D.AddForce(transform.up * jumpSpeed);
+            _jumpQtd--;
         }
     }
+
     protected virtual void OnOnAbilitiesChanged()
     {
         OnAbilitiesChanged(hasLeft, hasRight, hasJump, hasDown);
     }
+
+    private bool IsGrounded()
+    {
+        var bounds = _playerMainCollider.bounds;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bounds.center,
+            bounds.size,
+            0f, Vector2.down, extraHeightValue, plataformLayerMask);
+
+        Color rayColor;
+        
+        bool result = raycastHit.collider != null;
+        
+        rayColor = result ? Color.green : Color.red;
+
+
+        if (result)
+        {
+            _jumpQtd = maxJumpQtd;
+        }
+
+        Debug.DrawRay(bounds.center + new Vector3(bounds.extents.x, 0), Vector2.down * (bounds.extents.y
+            + extraHeightValue), rayColor);
+        Debug.DrawRay(_playerMainCollider.bounds.center - new Vector3(bounds.extents.x, 0), Vector2.down *
+            (bounds.extents.y + extraHeightValue), rayColor);
+        Debug.DrawRay(_playerMainCollider.bounds.center - new Vector3(bounds.extents.x,
+                bounds.extents.y + extraHeightValue),
+            Vector2.right * bounds.extents.x * 2, rayColor);
+
+        return result;
+    }
+
 
     public bool IsPressingDown()
     {

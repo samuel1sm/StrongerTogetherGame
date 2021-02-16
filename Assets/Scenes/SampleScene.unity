@@ -248,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 765502349}
   - component: {fileID: 765502350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: head
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 845856579}
   - component: {fileID: 845856580}
   - component: {fileID: 845856581}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: legs
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1377487841}
   - component: {fileID: 1377487842}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 1411266443}
   - component: {fileID: 1411266444}
   - component: {fileID: 1411266445}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -734,8 +734,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bc02ce80f25e84399bc18014e6bccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 10
+  horizontalSpeed: 220
   jumpSpeed: 300
+  extraHeightValue: 0.01
+  maxJumpQtd: 1
+  plataformLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _jumpQtd: 0
   hasLeft: 0
   hasRight: 1
   hasJump: 0
@@ -1951,7 +1957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1952077113}
   - component: {fileID: 1952077114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jetpack
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2101,7 +2107,7 @@ PrefabInstance:
     - target: {fileID: 58146876518128397, guid: 05ada17f456210041a995bae68610e17,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.116
+      value: -5.067
       objectReference: {fileID: 0}
     - target: {fileID: 58146876518128397, guid: 05ada17f456210041a995bae68610e17,
         type: 3}
@@ -2227,17 +2233,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2863097549365336527, guid: ad143e0a4489e834797e7f2684ea9675,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5019883224218151674, guid: 9dc72f8d6ba542043a06287b6b32f7d0,
-        type: 3}
-    - target: {fileID: 2863097549365336527, guid: ad143e0a4489e834797e7f2684ea9675,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad143e0a4489e834797e7f2684ea9675, type: 3}
 --- !u!1001 &3697247904081802124
@@ -2251,17 +2246,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JumpComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 3697247905058451002, guid: 858b522fd3c0e2c4eacafa6de32f60e4,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5467934049657041695, guid: 9dc72f8d6ba542043a06287b6b32f7d0,
-        type: 3}
-    - target: {fileID: 3697247905058451002, guid: 858b522fd3c0e2c4eacafa6de32f60e4,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3697247905058451003, guid: 858b522fd3c0e2c4eacafa6de32f60e4,
         type: 3}
@@ -2327,17 +2311,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 312265077}
     m_Modifications:
-    - target: {fileID: 8162560879025249824, guid: 0bd3017ce4c06b14a91bae97b6e95bf8,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5820550921071828555, guid: 9dc72f8d6ba542043a06287b6b32f7d0,
-        type: 3}
-    - target: {fileID: 8162560879025249824, guid: 0bd3017ce4c06b14a91bae97b6e95bf8,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8162560879025249825, guid: 0bd3017ce4c06b14a91bae97b6e95bf8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2466,17 +2439,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DownComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 9058966383533699535, guid: 349b6d10d8288014a9d437d45a8a518d,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1984115513517556410, guid: 9dc72f8d6ba542043a06287b6b32f7d0,
-        type: 3}
-    - target: {fileID: 9058966383533699535, guid: 349b6d10d8288014a9d437d45a8a518d,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 349b6d10d8288014a9d437d45a8a518d, type: 3}
