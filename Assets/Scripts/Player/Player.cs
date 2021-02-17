@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[SelectionBase]
 public class Player : MonoBehaviour
 {
     [SerializeField] private float horizontalSpeed;
