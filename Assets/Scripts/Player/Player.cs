@@ -23,12 +23,12 @@ public class Player : MonoBehaviour
     public bool hasJump;
     public bool hasDown;
 
+    public bool isGrounded = true;
 
-    public event Action<bool, bool, bool> OnMovimentChanged = delegate { };
+    public event Action<bool, bool> OnMovimentChanged = delegate { };
     public event Action<bool, bool, bool, bool> OnAbilitiesChanged = delegate { };
 
     private Vector2 _lastMovement;
-    private bool _lastDirection = true;
 
     private void Awake()
     {
@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _playerInput.terrain.jump.started += _ => Jump();
+        _playerInput.terrain.ResetLevel.started += _ => ResetLevel();
     }
 
     private void OnEnable()
@@ -68,35 +69,28 @@ public class Player : MonoBehaviour
 
         Vector2 movement = new Vector2(xMovement, 0);
 
-        bool atualDirection = xMovement > 0;
-
 
         if (_lastMovement != movement)
         {
-            if (xMovement != 0)
-            {
-                OnMovimentChanged(movement != Vector2.zero, atualDirection, _lastDirection != atualDirection);
-                _lastDirection = atualDirection;
-            }
-            else
-            {
-                OnMovimentChanged(movement != Vector2.zero, atualDirection, false);
-            }
+            bool isMoving = movement != Vector2.zero;
+            OnMovimentChanged(isMoving, isMoving ? movement.x < 0 : _lastMovement.x < 0);
         }
-
 
         _lastMovement = movement;
         movement *= Time.deltaTime * horizontalSpeed;
         movement.y = _rigidbody2D.velocity.y;
 
+
         _rigidbody2D.velocity = movement;
-        
-        if(_jumpQtd != maxJumpQtd && movement.y <0)
-            IsGrounded();
-        
+        if (movement.x != 0 && IsGrounded())
+            AudioManager.Instance.PlaySound(global::Sound.PlayerMove);
+
+        if (_jumpQtd != maxJumpQtd && movement.y < 0)
+        {
+            isGrounded = IsGrounded();
+        }
     }
 
-    
 
     public void ChangeHasLeft(bool activate)
     {
@@ -126,6 +120,7 @@ public class Player : MonoBehaviour
     {
         if (hasJump && _jumpQtd > 0)
         {
+            isGrounded = false;
             Vector2 vel = _rigidbody2D.velocity;
             vel.y = 0;
             _rigidbody2D.velocity = vel;
@@ -147,9 +142,9 @@ public class Player : MonoBehaviour
             0f, Vector2.down, extraHeightValue, plataformLayerMask);
 
         Color rayColor;
-        
+
         bool result = raycastHit.collider != null;
-        
+
         rayColor = result ? Color.green : Color.red;
 
 
@@ -173,5 +168,10 @@ public class Player : MonoBehaviour
     public bool IsPressingDown()
     {
         return _playerInput.terrain.Down.triggered;
+    }
+
+    public void ResetLevel()
+    {
+        SceneController.ResetScene();
     }
 }
