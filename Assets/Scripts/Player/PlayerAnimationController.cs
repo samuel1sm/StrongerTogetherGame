@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,6 +9,8 @@ public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
+    [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
+
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
 
@@ -15,8 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         GameManager.Player.OnMovimentChanged += ChangeWheelAnimation;
         GameManager.Player.OnAbilitiesChanged += ChangeHeadAnimation;
-        ChangeHeadAnimation(GameManager.Player.hasLeft, GameManager.Player.hasRight,
-            GameManager.Player.hasJump, GameManager.Player.hasDown);
+        GameManager.Player.OnOnAbilitiesChanged();
     }
 
     private void ChangeWheelAnimation(bool isWalking, bool flipX)
@@ -26,12 +28,10 @@ public class PlayerAnimationController : MonoBehaviour
         playerSpriteRenderer.flipX = flipX;
     }
 
-    private void ChangeHeadAnimation(bool hasLeft, bool hasRight, bool hasJump, bool hasDown)
+    private void ChangeHeadAnimation(PlayerCondition condition)
     {
-        // wheelAnimator.SetBool(HasLeft, hasLeft);
-        // wheelAnimator.SetBool(HasRight, hasRight);
-        //
-        // jumpObject.SetActive(hasJump);
+        print(condition);
+        playerAnimator.runtimeAnimatorController = animatorOverrideControllers[(int) condition];
     }
 
     // Start is called before the first frame update

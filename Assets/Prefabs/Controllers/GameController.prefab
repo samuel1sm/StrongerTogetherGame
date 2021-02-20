@@ -63,6 +63,21 @@ MonoBehaviour:
   - sound: 0
     audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
     audioTime: 0.2
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+    audioTime: 0.2
+  - sound: 2
+    audioClip: {fileID: 8300000, guid: 4ac216ab8bc127d46898fdcd51cbb041, type: 3}
+    audioTime: 0.1
+  - sound: 3
+    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+    audioTime: 0.2
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+    audioTime: 0.2
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+    audioTime: 0.2
 --- !u!114 &4156054380071872529
 MonoBehaviour:
   m_ObjectHideFlags: 0

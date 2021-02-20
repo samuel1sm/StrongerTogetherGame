@@ -19,12 +19,12 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
         }
         
         _soundTimerDictionary = new Dictionary<Sound, float>();

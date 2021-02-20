@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+
+public enum PlayerCondition
+{
+    HasLeft, HasRight, HasJump,  HasLeftJump,   HasRightJump,HasLeftRight, HasAll
+}
+
 [SelectionBase]
 public class Player : MonoBehaviour
 {
@@ -17,7 +23,8 @@ public class Player : MonoBehaviour
     private Collider2D _playerMainCollider;
     private PlayerInput _playerInput;
     private Rigidbody2D _rigidbody2D;
-
+    
+    
     public bool hasLeft;
     public bool hasRight;
     public bool hasJump;
@@ -26,7 +33,7 @@ public class Player : MonoBehaviour
     public bool isGrounded = true;
 
     public event Action<bool, bool> OnMovimentChanged = delegate { };
-    public event Action<bool, bool, bool, bool> OnAbilitiesChanged = delegate { };
+    public event Action<PlayerCondition> OnAbilitiesChanged = delegate { };
 
     private Vector2 _lastMovement;
 
@@ -120,6 +127,8 @@ public class Player : MonoBehaviour
     {
         if (hasJump && _jumpQtd > 0)
         {
+            AudioManager.Instance.PlaySound(global::Sound.Playerjump);
+
             isGrounded = false;
             Vector2 vel = _rigidbody2D.velocity;
             vel.y = 0;
@@ -129,9 +138,53 @@ public class Player : MonoBehaviour
         }
     }
 
-    protected virtual void OnOnAbilitiesChanged()
+    public void OnOnAbilitiesChanged()
     {
-        OnAbilitiesChanged(hasLeft, hasRight, hasJump, hasDown);
+        if (hasJump)
+        {
+            if (hasLeft && hasRight)
+            {
+                OnAbilitiesChanged(PlayerCondition.HasAll);
+
+            }
+            else if (hasLeft)
+            {
+                OnAbilitiesChanged(PlayerCondition.HasLeftJump);
+
+            }
+            else if(hasRight)
+            {
+                OnAbilitiesChanged(PlayerCondition.HasRightJump);
+
+            }
+            else
+            {
+                OnAbilitiesChanged(PlayerCondition.HasJump);
+            }
+        }
+        else
+        {
+            if (hasLeft && hasRight)
+            {
+                OnAbilitiesChanged(PlayerCondition.HasLeftRight);
+
+            }
+            else if (hasLeft)
+            {
+            
+                OnAbilitiesChanged(PlayerCondition.HasLeft);
+            }else if (hasRight)
+            {
+                OnAbilitiesChanged(PlayerCondition.HasRight);
+
+            }
+            
+        }
+        
+     
+  
+        
+        
     }
 
     private bool IsGrounded()

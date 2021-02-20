@@ -14,13 +14,17 @@ public class Teleport : MonoBehaviour
     {
         _coroutineStarted = true;
         int value = 0;
-        
+        AudioManager.Instance.PlaySound(global::Sound.Teleport);
+
         while (true)
         {
             yield return new WaitForSeconds(1f);
             value++;
             if (value == timeToLoad)
+            {
                 break;
+            }
+            
             
         }
         SceneController.LoadNextScene();

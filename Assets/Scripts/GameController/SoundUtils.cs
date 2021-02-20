@@ -6,7 +6,10 @@ using UnityEngine;
 public enum Sound
 {
     PlayerMove,
-    Music
+    Music,
+    Playerjump,
+    Teleport,
+    CollectingItem,
 }
 
 [System.Serializable]
