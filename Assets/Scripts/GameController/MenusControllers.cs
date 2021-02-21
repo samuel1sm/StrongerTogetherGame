@@ -7,11 +7,14 @@ public class MenusControllers : MonoBehaviour
     // Start is called before the first frame update
     public void SetLevelScene()
     {
+        AudioManager.Instance.PlaySound(Sound.MouseClick);
         SceneController.LoadLevelMenu();
     }
     
     public void LoadMenuScene()
     {
+        AudioManager.Instance.PlaySound(Sound.MouseClick);
+
         SceneController.LoadMainMenu();
     }
     

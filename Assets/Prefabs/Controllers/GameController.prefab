@@ -58,25 +58,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   efectsVolume: 1
-  musicVolume: 1
+  musicVolume: 0.798
   audioClips:
   - sound: 0
     audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
     audioTime: 0.2
   - sound: 1
-    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+    audioClip: {fileID: 8300000, guid: 2bcad8141cce1d842819557c4b5140dc, type: 3}
     audioTime: 0.2
   - sound: 2
     audioClip: {fileID: 8300000, guid: 4ac216ab8bc127d46898fdcd51cbb041, type: 3}
     audioTime: 0.1
   - sound: 3
-    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+    audioClip: {fileID: 8300000, guid: eaf2984fc6b4cbf458210247817960ec, type: 3}
+    audioTime: 0.1
+  - sound: 4
+    audioClip: {fileID: 8300000, guid: 3d80ebf1d15004b428e6b84b3e811e64, type: 3}
     audioTime: 0.2
-  - sound: 1
-    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: e9e632a61ba36794d860301deed50c89, type: 3}
     audioTime: 0.2
-  - sound: 1
-    audioClip: {fileID: 8300000, guid: 051d65533778d484aa068dd22e153a88, type: 3}
+  - sound: 6
+    audioClip: {fileID: 8300000, guid: 18761808459cd7043ace7e4538f5899f, type: 3}
     audioTime: 0.2
 --- !u!114 &4156054380071872529
 MonoBehaviour:

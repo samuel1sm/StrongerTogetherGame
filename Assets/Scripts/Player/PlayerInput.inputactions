@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "GoToLevelMenu",
+                    "type": "Button",
+                    "id": "0b5204db-c2a5-4261-b0de-8e7efceb59f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -113,6 +121,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ResetLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71c34b99-cd24-4bf2-bdbd-3cb2274de82b",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoToLevelMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

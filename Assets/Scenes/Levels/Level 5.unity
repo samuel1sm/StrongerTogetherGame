@@ -3947,16 +3947,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
-    - target: {fileID: 1852071644221438461, guid: 1b8914da0a54a4e41922be75b7dc97b5,
-        type: 3}
-      propertyPath: audioClips.Array.data[3].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: eaf2984fc6b4cbf458210247817960ec, type: 3}
-    - target: {fileID: 1852071644221438461, guid: 1b8914da0a54a4e41922be75b7dc97b5,
-        type: 3}
-      propertyPath: audioClips.Array.data[3].audioTime
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 1852071644221438463, guid: 1b8914da0a54a4e41922be75b7dc97b5,
         type: 3}
       propertyPath: m_RootOrder

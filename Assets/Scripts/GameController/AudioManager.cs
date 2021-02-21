@@ -7,44 +7,45 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 2f)] [SerializeField] private float efectsVolume = 1;
     [Range(0f, 1f)] [SerializeField] private float musicVolume = 1;
 
-    public static AudioManager Instance ; 
+    public static AudioManager Instance;
 
     public SoundAudioClip[] audioClips;
     private static Dictionary<Sound, float> _soundTimerDictionary;
     private AudioSource _musicPlayerSource;
     private AudioManager _audioM;
-    
+
 
     private void Awake()
     {
         if (Instance)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
-        
+
         _soundTimerDictionary = new Dictionary<Sound, float>();
         _soundTimerDictionary[Sound.PlayerMove] = 0f;
 
         GameObject musicPlayer = new GameObject("LevelSound");
+        musicPlayer.transform.SetParent(transform);
         _musicPlayerSource = musicPlayer.AddComponent<AudioSource>();
         _musicPlayerSource.volume = musicVolume;
 
-        // try
-        // {
-        //     _musicPlayerSource.clip = GetAudioClip(Sound.Music).audioClip;
-        //     _musicPlayerSource.loop = true;
-        //
-        //
-        //     _musicPlayerSource.Play();
-        // }
-        // catch
-        // {
-        // }
+        try
+        {
+            _musicPlayerSource.clip = GetAudioClip(Sound.Music).audioClip;
+            _musicPlayerSource.loop = true;
+
+
+            _musicPlayerSource.Play();
+        }
+        catch
+        {
+        }
     }
 
 

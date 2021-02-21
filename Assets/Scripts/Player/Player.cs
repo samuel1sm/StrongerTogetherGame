@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     {
         _playerInput.terrain.jump.started += _ => Jump();
         _playerInput.terrain.ResetLevel.started += _ => ResetLevel();
+        _playerInput.terrain.GoToLevelMenu.started += _ => GoToLevelMenu();
+
     }
 
     private void OnEnable()
@@ -127,7 +129,7 @@ public class Player : MonoBehaviour
     {
         if (hasJump && _jumpQtd > 0)
         {
-            AudioManager.Instance.PlaySound(global::Sound.Playerjump);
+            AudioManager.Instance.PlaySound(global::Sound.PlayerJump);
 
             isGrounded = false;
             Vector2 vel = _rigidbody2D.velocity;
@@ -226,5 +228,10 @@ public class Player : MonoBehaviour
     public void ResetLevel()
     {
         SceneController.ResetScene();
+    }
+
+    public void GoToLevelMenu()
+    {
+        SceneController.LoadLevelMenu();
     }
 }

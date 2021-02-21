@@ -7,9 +7,11 @@ public enum Sound
 {
     PlayerMove,
     Music,
-    Playerjump,
+    PlayerJump,
     Teleport,
     CollectingItem,
+    Arrow,
+    MouseClick
 }
 
 [System.Serializable]

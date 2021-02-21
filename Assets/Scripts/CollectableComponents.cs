@@ -20,7 +20,8 @@ public class CollectableComponents : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            
+            AudioManager.Instance.PlaySound(Sound.CollectingItem);
+
             switch (_componentType)
             {
                 case ComponentType.Left:

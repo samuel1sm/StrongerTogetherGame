@@ -49,6 +49,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""GoToLevelMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b5204db-c2a5-4261-b0de-8e7efceb59f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -128,6 +136,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""ResetLevel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71c34b99-cd24-4bf2-bdbd-3cb2274de82b"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoToLevelMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -140,6 +159,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_terrain_jump = m_terrain.FindAction("jump", throwIfNotFound: true);
         m_terrain_Down = m_terrain.FindAction("Down", throwIfNotFound: true);
         m_terrain_ResetLevel = m_terrain.FindAction("ResetLevel", throwIfNotFound: true);
+        m_terrain_GoToLevelMenu = m_terrain.FindAction("GoToLevelMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -193,6 +213,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_terrain_jump;
     private readonly InputAction m_terrain_Down;
     private readonly InputAction m_terrain_ResetLevel;
+    private readonly InputAction m_terrain_GoToLevelMenu;
     public struct TerrainActions
     {
         private @PlayerInput m_Wrapper;
@@ -201,6 +222,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @jump => m_Wrapper.m_terrain_jump;
         public InputAction @Down => m_Wrapper.m_terrain_Down;
         public InputAction @ResetLevel => m_Wrapper.m_terrain_ResetLevel;
+        public InputAction @GoToLevelMenu => m_Wrapper.m_terrain_GoToLevelMenu;
         public InputActionMap Get() { return m_Wrapper.m_terrain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -222,6 +244,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ResetLevel.started -= m_Wrapper.m_TerrainActionsCallbackInterface.OnResetLevel;
                 @ResetLevel.performed -= m_Wrapper.m_TerrainActionsCallbackInterface.OnResetLevel;
                 @ResetLevel.canceled -= m_Wrapper.m_TerrainActionsCallbackInterface.OnResetLevel;
+                @GoToLevelMenu.started -= m_Wrapper.m_TerrainActionsCallbackInterface.OnGoToLevelMenu;
+                @GoToLevelMenu.performed -= m_Wrapper.m_TerrainActionsCallbackInterface.OnGoToLevelMenu;
+                @GoToLevelMenu.canceled -= m_Wrapper.m_TerrainActionsCallbackInterface.OnGoToLevelMenu;
             }
             m_Wrapper.m_TerrainActionsCallbackInterface = instance;
             if (instance != null)
@@ -238,6 +263,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ResetLevel.started += instance.OnResetLevel;
                 @ResetLevel.performed += instance.OnResetLevel;
                 @ResetLevel.canceled += instance.OnResetLevel;
+                @GoToLevelMenu.started += instance.OnGoToLevelMenu;
+                @GoToLevelMenu.performed += instance.OnGoToLevelMenu;
+                @GoToLevelMenu.canceled += instance.OnGoToLevelMenu;
             }
         }
     }
@@ -248,5 +276,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnResetLevel(InputAction.CallbackContext context);
+        void OnGoToLevelMenu(InputAction.CallbackContext context);
     }
 }

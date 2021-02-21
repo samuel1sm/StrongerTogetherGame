@@ -42,6 +42,7 @@ public class Spawners : MonoBehaviour
                     item.transform.GetComponent<MoveblePlatform>().StartMove(itemSpeed);
                     break;
                 case SpawnerTypes.Knifes:
+                    AudioManager.Instance.PlaySound(Sound.Arrow);
                     item.transform.GetComponent<Rigidbody2D>().velocity = itemSpeed;
                     break;
   
