@@ -3766,7 +3766,9 @@ PrefabInstance:
     - target: {fileID: 6558692724248463902, guid: f16daa116fae982499e1ff546f876c47,
         type: 3}
       propertyPath: m_text
-      value: Press Space  to walk to the right
+      value: 'Press Space to walk to the Space
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6558692724635861608, guid: f16daa116fae982499e1ff546f876c47,
         type: 3}

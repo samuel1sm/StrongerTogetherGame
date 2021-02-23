@@ -514,7 +514,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get yours "left" part to be able to walk left
+  m_text: Get your "left" part to be able to walk left
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2569,21 +2569,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394375814845950724, guid: 1e93646a15f227143aa3311b745477c5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.691544
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394375815124742634, guid: 1e93646a15f227143aa3311b745477c5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394375815124742634, guid: 1e93646a15f227143aa3311b745477c5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.03
       objectReference: {fileID: 0}
     - target: {fileID: 7394375815124742635, guid: 1e93646a15f227143aa3311b745477c5,
         type: 3}
